@@ -1,0 +1,54 @@
+@extends('index')
+
+@section('content')
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap aling-items-center pt-3 pb-2 mb-3 border-bottom">
+<h1 class="h1">Contatos</h1>
+</div>
+
+<div>
+<form action="" method="GET">
+    <input type="text" name="pesquisar" placeholder="Digite para Buscar">
+    <button>pesquisar</button>
+    <a type="button" href="" class="btn btn-success float-end">
+        incluir
+    </a>
+</form>
+
+<div class="table-responsive mt-4">
+@if ($findcontatos->isEmpty())
+<p>nao existe dados</p>
+@else
+<table class="table table-striped table-sm">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Numero</th>
+            <th>E-mail</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($findcontatos as $contatos)
+          <tr>
+            <td>{{ $contatos->nome }}</td>
+            <td>{{ $contatos->numero }}</td>
+            <td>{{ $contatos->email }}</td>
+            <td>
+                <form action={{ route('contatos.delete', $contatos->id) }} method="POST">
+                @csrf
+                @method('DELETE')
+                
+                <button type="submit" class="btn btn-danger btn-sm">
+                    Excluir
+                </button>
+                </form>
+            </td>
+          </tr>
+        @endforeach
+    </tbody>
+</table>
+@endif
+</div>
+
+</div>
+@endsection

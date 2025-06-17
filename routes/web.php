@@ -1,7 +1,15 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\contatoscontroller;
+use App\Models\contatos;
 use Illuminate\Support\Facades\Route;
+
+// rota contatos
+Route::get('/contatos', [contatoscontroller::class, 'index']) ->name('contatos.index');
+
+// rota delete
+Route::delete('/contatos/{contatosId}', [contatoscontroller::class, 'delete'])->name('contatos.delete');
 
 Route::get('/', function () {
     return view('welcome');
