@@ -19,6 +19,13 @@ Route::get('/index', function(){
     return view('index');
 });
 
+//rota de create - metodo get
+Route::get('/contatos/create', [ContatosController::class, 'create'])->name('contatos.create.get');
+
+//rota de create - metodo post
+Route::post('/contatos/create', [ContatosController::class, 'create'])->name('contatos.create.post');
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

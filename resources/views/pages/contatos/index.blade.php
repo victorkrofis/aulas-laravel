@@ -9,7 +9,7 @@
 <form action="" method="GET">
     <input type="text" name="pesquisar" placeholder="Digite para Buscar">
     <button>pesquisar</button>
-    <a type="button" href="" class="btn btn-success float-end">
+    <a type="button" href="{{ route('contatos.create.get') }}" class="btn btn-success float-end">
         incluir
     </a>
 </form>
