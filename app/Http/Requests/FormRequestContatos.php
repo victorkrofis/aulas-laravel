@@ -23,7 +23,9 @@ class FormRequestContatos extends FormRequest
 
         if($this->method() == 'POST' || $this->method() == 'PUT'){
             $request = [
-                'nome' => 'required',
+            'nome' => 'required|string|max:255',
+            'numero' => 'required|regex:/^\(\d{2}\)\s\d{4,5}-\d{4}$/', // Validação do telefone
+            'email' => ['required', 'email', 'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/'], // Validação do e-mail
             ];
         }
 
