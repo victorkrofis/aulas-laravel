@@ -25,6 +25,14 @@ Route::get('/contatos/create', [ContatosController::class, 'create'])->name('con
 //rota de create - metodo post
 Route::post('/contatos/create', [ContatosController::class, 'create'])->name('contatos.create.post');
 
+//rota de update - metodo get
+Route::get('/contatos/update/{contatoID}', [contatoscontroller::class, 'update'])->name('contatos.update.get');
+
+
+//rota de update - metodo put
+Route::put('/contatos/update/{contatoID}', [contatoscontroller::class, 'update'])->name('contatos.update.put');
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

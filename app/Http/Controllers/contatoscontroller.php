@@ -10,8 +10,16 @@ use App\Http\Requests\FormRequestContatos;
 
 class contatoscontroller extends Controller
 {
-    public function index(){
-        $findcontatos = contatos::get();
+    public function __construct(Contatos $contatos) {
+        $this->contato = $contatos;
+    }
+    
+        
+    
+
+    public function index(Request $request){
+        $pesquisar = $request->pesquisar;
+        $findcontatos = $this->contato->getFiltrosPaginate(search: $pesquisar ?? "");
 
         return view('pages.contatos.index', compact('findcontatos'));
     } 
@@ -33,5 +41,19 @@ class contatoscontroller extends Controller
         }
  
         return view('pages.contatos.create');
+    }
+
+    public function update(FormRequestContatos $required, $idcontato) {
+        if($required->method() == 'PUT') {
+            $data = $required->all();
+            $buscaRegistro = contatos::find($idcontato);
+            $buscaRegistro->update($data);
+
+            return redirect('/contatos');
+        }
+
+        $findcontatos = contatos::where('id', '=', $idcontato)->first();
+
+        return view('pages.contatos.update', compact('findcontatos'));
     }
 }
