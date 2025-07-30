@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+
 class FormRequestUsuarios extends FormRequest
 {
     /**
@@ -11,7 +12,7 @@ class FormRequestUsuarios extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -28,7 +29,7 @@ class FormRequestUsuarios extends FormRequest
 
         if($this->method() == 'POST' || $this->method() == 'PUT'){
         $request = [
-            'nome' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'email' => ['required', 'email', 'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/'], // Validação do e-mail
             'password' => 'required',
             ];

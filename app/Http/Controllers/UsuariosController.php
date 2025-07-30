@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Http\Request\FormRequestUsuarios;
+use App\Http\Requests\FormRequestUsuarios;
+
+// Hash de autentificação para criptografar a senha
+use Illuminate\Support\Facades\Hash;
 
 class UsuariosController extends Controller
 {
@@ -33,7 +36,13 @@ class UsuariosController extends Controller
         // condicional para entendimento do envio dos dados para o  banco de dados
         if($request->method() == "POST"){
             $data = $request->all();
-            Contatos::create($data);
+            User::create(
+                [
+                "name" => $data['name'],
+                "email" => $data['email'],
+                "password" => Hash::make($data['password']),we
+            ]
+        );
  
             return redirect('/usuarios');
         }
