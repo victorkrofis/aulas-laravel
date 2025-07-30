@@ -62,7 +62,9 @@ Route::get('/usuarios/update/{userID}', [UsuairosController::class, 'update'])->
 //rota de update de usuarios - metodo put
 Route::put('/usuarios/update/{userID}', [UsuariosController::class, 'update'])->name('usuarios.update.put');
 
-
+Route::get('/index', function() {
+    return view('index');
+})->middleware(['auth', 'verified'])->name('index');
 
 Route::get('/dashboard', function () {
     return view('index');
