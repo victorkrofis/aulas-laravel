@@ -9,6 +9,15 @@
 <form class="form" action="{{ route('usuarios.create.post') }}" method="POST">
     @csrf
     <div class="mb-3">
+     <label class="form-label">Permissão</label>
+     <select name="permissao_do_usuario" class="form-select" arial-label="clique aqui e select">
+        <option value="administrador">Administrador</option>
+        <option value="usuario">Usuario</option>
+     </select>
+    </div>
+
+
+    <div class="mb-3">
         <label class="form-label">Nome</label>
         <input type="text" class="form-control @error('name') is-invalid @enderror" name="name">
         @if ($errors->has('name'))

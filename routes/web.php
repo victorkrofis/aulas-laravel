@@ -56,7 +56,7 @@ Route::get('/usuarios/create', [UsuariosController::class, 'create'])->name('usu
 Route::post('/usuarios/create', [UsuariosController::class, 'create'])->name('usuarios.create.post');
 
 //rota de update de usuarios - metodo get
-Route::get('/usuarios/update/{userID}', [UsuairosController::class, 'update'])->name('usuarios.update.get');
+Route::get('/usuarios/update/{userID}', [UsuariosController::class, 'update'])->name('usuarios.update.get');
 
 
 //rota de update de usuarios - metodo put

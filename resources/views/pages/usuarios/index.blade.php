@@ -21,6 +21,7 @@
 <table class="table table-striped table-sm">
     <thead>
         <tr>
+            <th>Permissão</th>
             <th>Nome</th>
             <th>E-mail</th>
             <th>Ações</th>
@@ -29,6 +30,7 @@
     <tbody>
         @foreach ($findUser as $user)
           <tr>
+            <td>{{ $user->permissao_do_usuario }}</td>
             <td>{{ $user->name }}</td>
             <td>{{ $user->email }}</td>
             <td>
