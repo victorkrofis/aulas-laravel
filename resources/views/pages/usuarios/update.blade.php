@@ -6,30 +6,44 @@
     <h1 class="h1">Alterar Contatos</h1>
 </div>
  
-<form class="form" action="{{ route('contatos.update.put', $findcontatos->id) }}" method="POST">
+<form class="form" method="POST" action="{{ route('usuarios.update.put', $findUser->id) }}" >
+
     @method('PUT')
     @csrf
+
+    <div class="mb-3">
+        <label class="form-label">Permissao</label>
+        <select name="permissao_do_usuario" class="form-select" aria-label="Clique aqui e selecione">
+            
+            <option value="administrador" @selected($findUser->permissao_do_usuario == "administrador")>Administrador</option>
+
+            <option value="usuario" @selected($findUser->permissao_do_usuario == "usuarios")>Usuarios</option>
+
+        </select>
+    </div>
+
     <div class="mb-3">
         <label class="form-label">Nome</label>
-        <input value="{{ $findcontatos->nome }}" type="text" class="form-control @error('nome') is-invalid @enderror" name="nome">
-        @if ($errors->has('nome'))
+        <input value="{{ $findUser->name }}" type="text" class="form-control @error('name') is-invalid @enderror" name="name">
+        @if ($errors->has('name'))
         <div class="invalid-feedback">O campo nome é obrigatorio</div> @endif
     </div>
  
-    <div class="mb-3">
-        <label class="form-label">Telefone</label>
-        <input value="{{ $findcontatos->numero }}" type="text" id="telefoneMask" class="form-control @error('numero') is-invalid @enderror" name="numero">
-        @if ($errors->has('numero'))
-        <div class="invalid-feedback">O campo telefone é obrigatorio, de 10 a 11 digitos</div> @endif
-    </div>
+   
  
     <div class="mb-3">
         <label class="form-label">E-mail</label>
-        <input value="{{ $findcontatos->email }}" type="text" class="form-control @error('email') is-invalid @enderror" name="email" id="email">
+        <input value="{{ $findUser->email }}" type="text" class="form-control @error('email') is-invalid @enderror" name="email" id="email">
         @if ($errors->has('email'))
         <div class="invalid-feedback">O campo email é obrigatorio, exemplo: teste@teste.co</div> @endif
     </div>
  
+
+    <div class="mb-3">
+        <label class="form-label">Senha</label>
+        <input value="{{ $findUser->password }}" type="password" class="form-control" name="password">
+    </div>
+
     <button type="submit" class="btn btn-success">Alterar</button>
 </form>
  
