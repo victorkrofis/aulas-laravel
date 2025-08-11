@@ -9,9 +9,14 @@
 <form action="{{ route('contatos.index') }}" method="GET">
     <input type="text" name="pesquisar" placeholder="Digite para Buscar">
     <button type="submit">pesquisar</button>
+
+    @can('acessoPageContatos', Auth::user())
     <a type="button" href="{{ route('contatos.create.get') }}" class="btn btn-success float-end">
         incluir
     </a>
+    @endcan
+
+    
 </form>
 
 <div class="table-responsive mt-4">
